@@ -6,12 +6,13 @@ Author: Ycahome, 2017
 Version:    1.0.0: Initial Version
             1.0.1: Minor bug fixes
             1.0.2: Bug Correction
+            1.0.3: Bug Correction with rss parsing
 
 """
 """
 
 
-<plugin key="MeteoAlarmEU" name="Meteo Alarm EU RSS Reader" author="ycahome" version="1.0.2" wikilink="" externallink="http://www.domoticz.com/forum/viewtopic.php?f=65&t=19519">
+<plugin key="MeteoAlarmEU" name="Meteo Alarm EU RSS Reader" author="ycahome" version="1.0.3" wikilink="" externallink="http://www.domoticz.com/forum/viewtopic.php?f=65&t=19519">
     <params>
         <param field="Mode1" label="RSSFeed" width="400px" required="true" default="http://www.meteoalarm.eu/documents/rss/gr/GR011.rss"/>
         <param field="Mode3" label="Update every x minutes" width="200px" required="true" default="300"/>
@@ -157,7 +158,8 @@ class BasePlugin:
                 LEVELvalue = ""
                 AWTvalue = AWTPossitions[AWTPos].split('level')[0].strip()
                 Domoticz.Debug("AWT Possitions Value "+str(AWTPos)+":"+AWTvalue)
-                LEVELvalue = AWTPossitions[AWTPos].split('level:')[1].split('border')[0].replace('"','').strip()
+                #LEVELvalue = AWTPossitions[AWTPos].split('level:')[1].split('border')[0].replace('"','').strip()
+                LEVELvalue = AWTPossitions[AWTPos].split('level:')[1].split('"')[0]
                 Domoticz.Debug("Level Possitions Value "+str(AWTPos)+":"+LEVELvalue)
                 AWTtext =  AWTvalue
                 if (AWTvalue == "1") : AWTtext = "Wind"
@@ -220,7 +222,8 @@ class BasePlugin:
                 LEVELvalue = ""
                 AWTvalue = AWTPossitions[AWTPos].split('level')[0].strip()
                 Domoticz.Debug("AWT Possitions Value "+str(AWTPos)+":"+AWTvalue)
-                LEVELvalue = AWTPossitions[AWTPos].split('level:')[1].split('border')[0].replace('"','').strip()
+                #LEVELvalue = AWTPossitions[AWTPos].split('level:')[1].split('border')[0].replace('"','').strip()
+                LEVELvalue = AWTPossitions[AWTPos].split('level:')[1].split('"')[0]
                 Domoticz.Debug("Level Possitions Value "+str(AWTPos)+":"+LEVELvalue)
                 AWTtext =  AWTvalue
                 if (AWTvalue == "1") : AWTtext = "Wind"
